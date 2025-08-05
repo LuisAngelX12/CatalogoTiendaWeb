@@ -1,0 +1,46 @@
+﻿@model CatalogoWeb.Models.Usuario
+@{
+    ViewData["Title"] = "Login Cliente";
+}
+
+@{
+    Layout = "~/Views/Shared/_LayoutLogin.cshtml";
+}
+
+
+<div class="row justify-content-center mt-5">
+    <div class="col-md-5 col-lg-4">
+        <h2 class="text-center mb-4">Login Cliente</h2>
+
+        <form asp-action="Index" method="post" class="border p-4 shadow-sm rounded bg-light">
+            <div class="form-group mb-3">
+                <label asp-for="Correo"></label>
+                <input asp-for="Correo" class="form-control" />
+            </div>
+            <div class="form-group mb-3">
+                <label asp-for="Contrasena" class="form-label"></label>
+                <div class="input-group">
+                    <input asp-for="Contrasena" type="password" class="form-control" id="passwordLogin" />
+                    <button class="btn btn-outline-secondary" type="button" id="btnTogglePassword" onclick="togglePassword('passwordLogin')">
+                        <i class="bi bi-eye" id="iconLogin"></i>
+                    </button>
+                </div>
+                <span asp-validation-for="Contrasena" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary w-100">Iniciar sesión</button>
+        </form>
+
+        @if (ViewBag.Error != null)
+        {
+            <div class="alert alert-danger mt-3">@ViewBag.Error</div>
+        }
+
+        <div class="text-center mt-3">
+            <p>¿No tienes cuenta? 
+                <a asp-controller="Usuarios" asp-action="Create" class="btn btn-outline-success btn-sm ms-2">
+                    Regístrate aquí
+                </a>
+            </p>
+        </div>
+    </div>
+</div>

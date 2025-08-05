@@ -1,0 +1,67 @@
+﻿@model IEnumerable<CatalogoWeb.Models.Producto>
+@{
+    ViewData["Title"] = "Comprar Productos";
+}
+
+@{
+    Layout = "~/Views/Shared/_LayoutCliente.cshtml";
+}
+
+<h2 class="mb-4">Catálogo de Productos</h2>
+
+@if (ViewBag.Mensaje != null)
+{
+    <div class="alert alert-success">@ViewBag.Mensaje</div>
+}
+
+<form asp-action="Filtrar" method="get" class="mb-4">
+    <div class="input-group">
+        <input type="text" name="filtro" class="form-control" placeholder="Buscar productos..." value="@ViewBag.Filtro" />
+        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+    </div>
+</form>
+
+<div class="row row-cols-1 row-cols-md-3 g-4">
+    @foreach (var producto in Model)
+    {
+        <div class="col">
+            <div class="card h-100 shadow-sm">
+                @if (!string.IsNullOrEmpty(producto.ImagenUrl))
+                {
+                    <img src="@producto.ImagenUrl" class="card-img-top" style="height: 200px; object-fit: contain;" />
+                }
+                else
+                {
+                    <div class="text-center py-5">Sin Imagen</div>
+                }
+                <div class="card-body">
+                    <h5 class="card-title">@producto.Nombre</h5>
+                    <p class="card-text">@producto.Descripcion</p>
+                    <p><strong>Precio:</strong> ₡@producto.Precio.ToString("N2")</p>
+                    <form asp-action="AgregarAlCarrito" asp-controller="Usuarios" method="post">
+                        <input type="hidden" name="idProducto" value="@producto.Id" />
+                        <div class="input-group mb-2">
+                            <input type="number" name="cantidad" value="1" min="1" class="form-control" />
+                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<script>
+    function cerrarSesion() {
+        fetch('/Usuarios/CerrarSesion', {
+            method: 'POST',
+            headers: {
+                'RequestVerificationToken': document.querySelector('input[name="__RequestVerificationToken"]')?.value || ''
+            }
+        }).then(response => {
+            if (response.redirected) {
+                window.location.href = response.url;
+            }
+        });
+    }
+</script>
