@@ -1,6 +1,12 @@
 using Microsoft.EntityFrameworkCore;
 using CatalogoWeb.Data;
 
+using (var scope = app.Services.CreateScope())
+{
+    var db = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+    db.Database.Migrate();
+}
+
 var builder = WebApplication.CreateBuilder(args);
 
 // EF Core + PostgreSQL
