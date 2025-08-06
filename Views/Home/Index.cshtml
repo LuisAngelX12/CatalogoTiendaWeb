@@ -1,49 +1,26 @@
 ﻿@{
-    ViewData["Title"] = "Inicio";
+    ViewData["Title"] = "Panel de Administración";
 }
 
-<section class="py-5 text-center bg-light">
+<section class="py-5 text-center bg-primary text-white">
     <div class="container">
-        <h1 class="display-4 fw-bold text-primary">Bienvenido a CatálogoTiendaWeb 🛍️</h1>
-        <p class="lead text-muted mt-3">
-            Explora nuestra tienda y encuentra los mejores productos al mejor precio.  
-            Con una interfaz simple, rápida y amigable, es más fácil comprar.
+        <h1 class="display-5 fw-bold">Panel de Control 🛠️</h1>
+        <p class="lead mt-3">
+            Desde aquí puedes gestionar productos, usuarios, pedidos y revisar estadísticas de la tienda.
         </p>
-        <a href="/Productos" class="btn btn-primary btn-lg px-4 mt-4 shadow">Ver productos</a>
     </div>
 </section>
 
 <section class="py-5 bg-white">
     <div class="container">
-        <h2 class="text-center text-dark mb-5">¿Qué puedes hacer aquí?</h2>
-        <div class="row g-4">
+        <h2 class="text-center mb-4 text-dark">Opciones disponibles</h2>
+        <div class="row justify-content-center g-4">
             <div class="col-md-4">
-                <div class="card border-0 shadow h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Navegar el catálogo</h5>
-                        <p class="card-text text-muted">
-                            Revisa fácilmente todos nuestros productos, con imágenes, precios y descripciones detalladas.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card border-0 shadow h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Buscar por categoría</h5>
-                        <p class="card-text text-muted">
-                            Usa el buscador y filtra por categorías para encontrar exactamente lo que necesitas.
-                        </p>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="card border-0 shadow h-100">
-                    <div class="card-body">
-                        <h5 class="card-title">Administrar productos</h5>
-                        <p class="card-text text-muted">
-                            Si eres administrador, puedes añadir, editar o eliminar productos en cuestión de segundos.
-                        </p>
+                <div class="card h-100 shadow-sm border-0">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Administrar Productos</h5>
+                        <p class="card-text text-muted">Agrega, edita o elimina productos del catálogo.</p>
+                        <a href="/Productos" class="btn btn-outline-primary">Ver productos</a>
                     </div>
                 </div>
             </div>

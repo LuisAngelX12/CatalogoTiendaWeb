@@ -1,23 +1,20 @@
 ﻿@model IEnumerable<CatalogoWeb.Models.Producto>
 @{
     ViewData["Title"] = "Comprar Productos";
-}
-
-@{
     Layout = "~/Views/Shared/_LayoutCliente.cshtml";
 }
 
-<h2 class="mb-4">Catálogo de Productos</h2>
+<h2 class="mb-4 text-center text-success fw-bold">Catálogo de Productos 🛍️</h2>
 
 @if (ViewBag.Mensaje != null)
 {
-    <div class="alert alert-success">@ViewBag.Mensaje</div>
+    <div class="alert alert-success text-center">@ViewBag.Mensaje</div>
 }
 
 <form asp-action="Filtrar" method="get" class="mb-4">
-    <div class="input-group">
-        <input type="text" name="filtro" class="form-control" placeholder="Buscar productos..." value="@ViewBag.Filtro" />
-        <button type="submit" class="btn btn-outline-primary">Buscar</button>
+    <div class="input-group shadow-sm">
+        <input type="text" name="filtro" class="form-control form-control-lg" placeholder="🔍 Buscar productos..." value="@ViewBag.Filtro" />
+        <button type="submit" class="btn btn-outline-success">Buscar</button>
     </div>
 </form>
 
@@ -25,24 +22,24 @@
     @foreach (var producto in Model)
     {
         <div class="col">
-            <div class="card h-100 shadow-sm">
+            <div class="card h-100 shadow border-0 rounded-4">
                 @if (!string.IsNullOrEmpty(producto.ImagenUrl))
                 {
-                    <img src="@producto.ImagenUrl" class="card-img-top" style="height: 200px; object-fit: contain;" />
+                    <img src="@producto.ImagenUrl" class="card-img-top rounded-top" style="height: 200px; object-fit: contain; background-color: #f8f9fa;" />
                 }
                 else
                 {
-                    <div class="text-center py-5">Sin Imagen</div>
+                    <div class="text-center py-5 text-muted">Sin Imagen</div>
                 }
-                <div class="card-body">
-                    <h5 class="card-title">@producto.Nombre</h5>
-                    <p class="card-text">@producto.Descripcion</p>
-                    <p><strong>Precio:</strong> ₡@producto.Precio.ToString("N2")</p>
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-semibold text-primary">@producto.Nombre</h5>
+                    <p class="card-text text-muted">@producto.Descripcion</p>
+                    <p class="mb-3"><strong>Precio:</strong> <span class="text-success">₡@producto.Precio.ToString("N2")</span></p>
                     <form asp-action="AgregarAlCarrito" asp-controller="Usuarios" method="post">
                         <input type="hidden" name="idProducto" value="@producto.Id" />
                         <div class="input-group mb-2">
-                            <input type="number" name="cantidad" value="1" min="1" class="form-control" />
-                            <button type="submit" class="btn btn-primary">Agregar al carrito</button>
+                            <input type="number" name="cantidad" value="1" min="1" class="form-control text-center" />
+                            <button type="submit" class="btn btn-success">🛒 Agregar</button>
                         </div>
                     </form>
                 </div>
