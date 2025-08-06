@@ -1,80 +1,84 @@
-﻿using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
 namespace CatalogoTiendaWeb.Migrations
 {
     /// <inheritdoc />
-    public partial class AddUsuarioTable : Migration
+    public partial class InitPostgre : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.AlterColumn<decimal>(
+                name: "Precio",
+                table: "Productos",
+                type: "numeric",
+                nullable: false,
+                oldClrType: typeof(decimal),
+                oldType: "numeric(65,30)");
+
             migrationBuilder.AlterColumn<string>(
                 name: "Nombre",
                 table: "Productos",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "varchar(100)",
-                oldMaxLength: 100)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldMaxLength: 100);
 
             migrationBuilder.AlterColumn<string>(
                 name: "ImagenUrl",
                 table: "Productos",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "varchar(200)",
-                oldMaxLength: 200)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldMaxLength: 200);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Descripcion",
                 table: "Productos",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "varchar(500)",
-                oldMaxLength: 500)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldMaxLength: 500);
 
             migrationBuilder.AlterColumn<string>(
                 name: "Categoria",
                 table: "Productos",
-                type: "longtext",
+                type: "text",
                 nullable: false,
                 oldClrType: typeof(string),
                 oldType: "varchar(50)",
-                oldMaxLength: 50)
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldMaxLength: 50);
+
+            migrationBuilder.AlterColumn<int>(
+                name: "Id",
+                table: "Productos",
+                type: "integer",
+                nullable: false,
+                oldClrType: typeof(int),
+                oldType: "int")
+                .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
             migrationBuilder.CreateTable(
                 name: "Usuarios",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
-                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
-                    Nombre = table.Column<string>(type: "varchar(50)", maxLength: 50, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Correo = table.Column<string>(type: "longtext", nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Contrasena = table.Column<string>(type: "varchar(100)", maxLength: 100, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4"),
-                    Rol = table.Column<string>(type: "varchar(20)", maxLength: 20, nullable: false)
-                        .Annotation("MySql:CharSet", "utf8mb4")
+                    Id = table.Column<int>(type: "integer", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Nombre = table.Column<string>(type: "character varying(50)", maxLength: 50, nullable: false),
+                    Correo = table.Column<string>(type: "text", nullable: false),
+                    Contrasena = table.Column<string>(type: "character varying(100)", maxLength: 100, nullable: false),
+                    Rol = table.Column<string>(type: "character varying(20)", maxLength: 20, nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Usuarios", x => x.Id);
-                })
-                .Annotation("MySql:CharSet", "utf8mb4");
+                });
         }
 
         /// <inheritdoc />
@@ -83,6 +87,14 @@ namespace CatalogoTiendaWeb.Migrations
             migrationBuilder.DropTable(
                 name: "Usuarios");
 
+            migrationBuilder.AlterColumn<decimal>(
+                name: "Precio",
+                table: "Productos",
+                type: "numeric(65,30)",
+                nullable: false,
+                oldClrType: typeof(decimal),
+                oldType: "numeric");
+
             migrationBuilder.AlterColumn<string>(
                 name: "Nombre",
                 table: "Productos",
@@ -90,9 +102,7 @@ namespace CatalogoTiendaWeb.Migrations
                 maxLength: 100,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "ImagenUrl",
@@ -101,9 +111,7 @@ namespace CatalogoTiendaWeb.Migrations
                 maxLength: 200,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Descripcion",
@@ -112,9 +120,7 @@ namespace CatalogoTiendaWeb.Migrations
                 maxLength: 500,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Categoria",
@@ -123,9 +129,16 @@ namespace CatalogoTiendaWeb.Migrations
                 maxLength: 50,
                 nullable: false,
                 oldClrType: typeof(string),
-                oldType: "longtext")
-                .Annotation("MySql:CharSet", "utf8mb4")
-                .OldAnnotation("MySql:CharSet", "utf8mb4");
+                oldType: "text");
+
+            migrationBuilder.AlterColumn<int>(
+                name: "Id",
+                table: "Productos",
+                type: "int",
+                nullable: false,
+                oldClrType: typeof(int),
+                oldType: "integer")
+                .OldAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
         }
     }
 }

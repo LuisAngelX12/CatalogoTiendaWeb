@@ -3,13 +3,13 @@ using CatalogoWeb.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// EF Core + MySQL
+// EF Core + PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
-    options.UseMySql(
-        builder.Configuration.GetConnectionString("DefaultConnection"),
-        new MySqlServerVersion(new Version(8, 0, 33))
+    options.UseNpgsql(
+        builder.Configuration.GetConnectionString("ConexionPostgre")
     )
 );
+
 
 // Agrega esto:
 builder.Services.AddDistributedMemoryCache(); // Necesario para usar sesiones
