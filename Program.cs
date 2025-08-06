@@ -6,7 +6,7 @@ var builder = WebApplication.CreateBuilder(args);
 // EF Core + PostgreSQL
 builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseNpgsql(
-        builder.Configuration.GetConnectionString("ConexionPostgre")
+        builder.Configuration.GetConnectionString("DefaultConnection")
     )
 );
 
@@ -15,7 +15,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 builder.Services.AddDistributedMemoryCache(); // Necesario para usar sesiones
 builder.Services.AddSession(options =>
 {
-    options.IdleTimeout = TimeSpan.FromMinutes(30); // Duración de la sesión
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // DuraciÃ³n de la sesiÃ³n
     options.Cookie.HttpOnly = true;
     options.Cookie.IsEssential = true;
 });
@@ -25,7 +25,7 @@ builder.Services.AddControllersWithViews();
 var app = builder.Build();
 
 // Agrega esto ANTES de MapControllerRoute:
-app.UseSession(); // Habilita el middleware de sesión
+app.UseSession(); // Habilita el middleware de sesiÃ³n
 
 app.UseStaticFiles();
 app.UseRouting();
