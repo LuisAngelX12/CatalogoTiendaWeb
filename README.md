@@ -60,12 +60,12 @@ El proyecto fue desarrollado utilizando una mezcla de **Scrum y Kanban**, dividi
 
   ``bash
   dotnet ef database update
-  ``bash
+  ``
   
 4. Ejecuta el proyecto:
 
   ``bash
   dotnet run
-  ``bash
+  ``
   
 // ¡Listo! Ya puedes acceder a tu catálogo en línea en https://localhost:5001 (o el puerto configurado).
