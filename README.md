@@ -58,13 +58,13 @@ El proyecto fue desarrollado utilizando una mezcla de **Scrum y Kanban**, dividi
 
 3. Ejecuta en la terminal del proyecto (Para actualizar la migracion de la base de datos):
 
-  ``bash
+  ``
   dotnet ef database update
   ``
   
 4. Ejecuta el proyecto:
 
-  ``bash
+  ``
   dotnet run
   ``
   
